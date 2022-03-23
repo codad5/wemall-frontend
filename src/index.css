@@ -1,13 +1,197 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* to use this stylesheet just type section then class name in the find to go to the section style part */
+/* Example L 
+1-< if using Vscode. atom, notepad  press Ctrl + F
+2-> tben type "section = hero section begins"
+      --This  will take you to the beginning of the hero section --
+      NB -- 1. if the style name is 'hero__banner' or 'hero_banner' the the find query word will be 'hero__banner' or 'hero_banner' respectively.
+            2. But if the style name is 'hero-banner'the the find query word will be 'hero' --*/
+
+:root{
+  --main-black:#000000;
+  --main-grey:#cecece;
+  --main-red:#ff0000;
+  --main-orange:#fbb03b;
+  --main-white:#ffffff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+main{
+  max-widtH:100vw;
+  width:100vw;
+  overflow-x:hidden;
+}
+
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+section{
+  width:100vw;
+}
+/* section = header section begins */
+/* to style the landing header */
+header{
+  width:100vw;
+  padding:0 10%;
+  display:flex;
+  height:70px;
+  position:fixed;
+  top:20px;
+  color:var(--main-white);
+  z-index:100;
+}
+
+header div, header nav{
+  display:inline-block;
+  height:100%;
+  display:flex;
+  align-items:center;
+  
+  
+}
+header > div{
+  flex-basis:28%;
+  
+}header nav{
+  flex-basis:34%;
+
+}
+nav ul{
+  height: 100%;
+  display:inline-block;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-evenly;
+}
+nav li{
+  display:inline-grid;
+  height:100%;
+  place-items:center;
+  
+}
+.header-nav_link{
+  text-decoration:none;
+  color:var(--main-white);
+  
+}
+/* section = hero section begins */
+/* to style the landing hero */
+
+.hero-banner{
+  height:clamp(500px,70vw,650px);
+  object-fit:cover;
+  background-size: calc(110% + 10px) calc(145% );
+  background-position-x: -100px;
+  background-position-y: -253px;
+  background-repeat: no-repeat;
+  position:relative;
+
+}
+.header-footer{
+  display:inline-block;
+  position:absolute;
+  background:var(--main-white);
+  width:70%;
+  left:0;
+  bottom:0;
+  height:20%;
+  border-radius: 0 70px 0 0;
+
+}
+
+
+/* section = Featured section begins */
+/* to style the landing Featured */
+
+
+.Featured{
+  height:300px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px 0px;
+
+}
+
+.featured_cnt{
+  width:100%;
+  max-width:800px;
+  height: 100%;
+  display:flex;
+  justify-content:space-evenly;
+
+
+}
+
+
+
+.featured_box{
+  display:inline-block;
+  height: 100%;
+  flex-basis: 25%;
+  object-fit:cover;
+  background-size:100% 100% !important;
+  /* background-position-x: -100px; */
+  /* background-position-y: -253px; */
+  position:relative;
+  background-repeat: no-repeat;
+
+}
+
+.big-featured_box{
+  flex-basis:45%;
+
+}
+
+.featured_box-txt_cnt {
+  position :absolute;
+  bottom:0;
+  left:0;
+  width:50%;
+  max-width:200px;
+  min-width:150px;
+  height:60%;
+  /* background:var(--main-white); */
+  display:flex;
+  flex-direction:column;
+  
+}
+
+.featured_box-txt{
+  flex-basis: 35%;
+  width:100%;
+  color:var(--main-white);
+  text-align: left;
+  padding:0 20px;
+}
+
+
+.featured_box-actionbtn-cnt{
+  flex-basis: 35%;
+  width:100%;
+  color:var(--main-white);
+  text-align: left;
+  display:grid;
+  place-items:center;
+  
+}
+.featured_box-actionbtn-cnt a{
+  background: var(--main-white);
+  display: inline-block;
+  padding:7px 20px;
+  text-decoration: none;
+  color:var(--main-black);
+  border-radius:16px;
+}
+
+/* section = Featured section begins */
+/* to style the landing Featured */
+
+.whyus{
+  
 }
