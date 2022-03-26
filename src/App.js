@@ -3,6 +3,8 @@ import './App.css';
 import Header from './Header'
 import Hero from './Hero'
 import Featured from './Featured'
+import ProductShow from './ProductShow'
+import Footer from './Footer'
 
 
 function App() {
@@ -17,7 +19,10 @@ function App() {
         <section className="whyus">
             wh
         </section>
+        <ProductShow value="100"></ProductShow> 
+        <ProductShow value="100"></ProductShow> 
       </main>
+      <Footer></Footer>
 
     </div>
   );
