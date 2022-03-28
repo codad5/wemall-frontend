@@ -16,6 +16,7 @@ render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/men" element={<App gender="men" />} />
         <Route path="*" element={<App />} />
         
       </Routes>

@@ -1,9 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
 export default function Header(){
+    const [headerStyle, setHeaderStyle] = useState({});
+    const [scrollHeight, setScrollHeight] = useState(window.scrollY);
+    useEffect(() => {
+        if (scrollHeight >= 518) {
+            setHeaderStyle({ background: 'var(--main-black)', top: 0, transition: 'all 0s' });
+        }else{
+            setHeaderStyle({ background: 'transparent', top: '20px' });
+
+        }
+    }, [scrollHeight])
+    window.addEventListener('scroll', () => {
+        setScrollHeight(window.scrollY);
+        // console.log(window.scrollY);
+        
+        
+    })
     return (
-        <header>
+        <header style={headerStyle}>
             <div className="header-logo">
                 Wemall
             </div>
