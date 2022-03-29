@@ -1,12 +1,15 @@
 import {useState, useEffect} from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useLocation, useNavigate, Link, createSearchParams } from 'react-router-dom'
 import axios from 'axios';
 
 function ProductShow(props) {
-  let navigate = useSearchParams();
+  let navigateP = new URLSearchParams(useLocation().search);
   // console.log(useSearchParams())
+  let navigate = useNavigate();
+
+  
   const [products, setProducts] = useState([]);
-  const [viewProduct, setViewProduct] = useState();
+  
   useEffect(() => {
     axios.get('http://localhost/wemall/api/list/'+(props.param || 'category/all'))
     .then((response) => {
@@ -69,8 +72,9 @@ function ProductShow(props) {
 
   }
 
-  const postRedirect = () => {
-    navigate(URLSearchParams)
+  const postRedirect = (id) => {
+    
+    navigate(`view/?product=${id}`)
   }
   
   return (
@@ -82,9 +86,13 @@ function ProductShow(props) {
         <div className="product-details">
           <div className="product-name" onClick={(e) => {
             e.preventDefault();
-            setViewProduct(product.product_id);
-            postRedirect();
-          }}> {product.product_name}</div>
+            // console.log(product.product_id)
+            
+            // postRedirect(product.product_id);
+          }}><Link to={{
+              pathname: `view/?product=${product.product_id}&link=${product.api_perm_link}`
+              
+          }}> {product.product_name}</Link> </div>
           <div className="product-price"> {setDiscount(product)}
             ${product.product_price} </div>
         </div>

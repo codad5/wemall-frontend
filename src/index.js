@@ -6,6 +6,7 @@ import {
 } from "react-router-dom"
 import './index.css';
 import App from './App';
+import View from './View';
 
 
 
@@ -17,6 +18,7 @@ render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/men" element={<App gender="men" />} />
+        <Route path="/view" element={<View gender="men" />} />
         <Route path="*" element={<App />} />
         
       </Routes>
