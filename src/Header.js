@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
 export default function Header(props){
-    const [headerStyle, setHeaderStyle] = useState({ background: props.background ||'transparent', top: 0, transition: 'all 0s' });
+    const [headerStyle, setHeaderStyle] = useState({ background: props.background ||'transparent',color: props.color, top: 0, transition: 'all 0s' });
     const [scrollHeight, setScrollHeight] = useState(window.scrollY);
     
     useEffect(() => {
@@ -21,17 +21,17 @@ export default function Header(props){
     })
     return (
         <header style={headerStyle}>
-            <div className="header-logo">
+            <div className="header-logo" style={{ color: props.color || 'inherit' }}>
                 Wemall
             </div>
             <nav>
                 <ul>
-                    <li><Link className="header-nav_link"to="/men">Men</Link></li>
-                    <li><Link className="header-nav_link" to="/women">Women</Link></li>
-                    <li><Link className="header-nav_link" to="/women">Kid</Link></li>
+                    <li><Link className="header-nav_link"to="/men" style={{color :props.color || 'inherit'}}>Men</Link></li>
+                    <li><Link className="header-nav_link" to="/women" style={{color :props.color || 'inherit'}}>Women</Link></li>
+                    <li><Link className="header-nav_link" to="/women" style={{color :props.color || 'inherit'}}>Kid</Link></li>
                 </ul>
             </nav>
-            <div className="header-access_icon">
+            <div className="header-access_icon" style={{ color: props.color || 'inherit' }}>
                 Hello
             </div>
         </header>

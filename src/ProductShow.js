@@ -1,8 +1,11 @@
 import {useState, useEffect} from 'react'
 import { useSearchParams, useLocation, useNavigate, Link, createSearchParams } from 'react-router-dom'
 import axios from 'axios';
+import BaseUrl from './components/BaseUrl';
+
 
 function ProductShow(props) {
+  const base= BaseUrl();
   let navigateP = new URLSearchParams(useLocation().search);
   // console.log(useSearchParams())
   let navigate = useNavigate();
@@ -11,7 +14,7 @@ function ProductShow(props) {
   const [products, setProducts] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost/wemall/api/list/'+(props.param || 'category/all'))
+    axios.get(base+'list/'+(props.param || 'category/all'))
     .then((response) => {
       // console.log(response)
       setProducts(response.data.data)

@@ -2,7 +2,9 @@ import {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 
 
+
 function Featured(props) {
+    
     const [product, setProducts] = useState([]);
     const style = {
 
