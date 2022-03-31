@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
-export default function Header(){
-    const [headerStyle, setHeaderStyle] = useState({});
+export default function Header(props){
+    const [headerStyle, setHeaderStyle] = useState({ background: props.background ||'transparent', top: 0, transition: 'all 0s' });
     const [scrollHeight, setScrollHeight] = useState(window.scrollY);
+    
     useEffect(() => {
-        if (scrollHeight >= 518) {
+        if (scrollHeight >= 518 || props.background != null) {
             setHeaderStyle({ background: 'var(--main-black)', top: 0, transition: 'all 0s' });
         }else{
             setHeaderStyle({ background: 'transparent', top: '20px' });

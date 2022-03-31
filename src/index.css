@@ -16,8 +16,9 @@
   /* for font size  */
 
   --sm-font:10px;
+  /* em size */
+  --em-large:2em;
 }
-
 main{
   max-widtH:100vw;
   width:100vw;
@@ -240,6 +241,9 @@ header nav li{
 
 }
 
+.product-details .product-name a{
+  text-decoration:underline;
+}
 .product-details .product-name{
   width:100%;
   flex-basis: 50%;
@@ -420,4 +424,58 @@ footer .footer_info-description{
     text-decoration:underline;
     color:var(--main-black);
     font-weight: 200;
+  }
+
+  /* to style the  ProductShow.js */
+
+  .roduct_show-hero{
+    display:flex;
+    flex-wrap:wrap;
+
+  }
+
+  .product_show-hero-error_msg{
+    display:grid;
+    place-items:center;
+    height:400px;
+    font-size:var(--em-large);
+    color:var(--main-grey);
+  }
+
+  .product_show-layout_cnt{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    padding:0px 40px;
+
+
+  }
+
+  .product_show-layout-header {
+    width:100%;
+    flex-shrink:0;
+    height:40px;
+    background:green;
+  }
+
+  .product_show-layout_all_image{
+    width:10%;
+    height:400px;
+    background:yellow;
+    min-width:150px;
+  }
+ .product_show-main-pic .image{
+    width:85%;
+    height:85%;
+    overflow:hidden;
+  }
+  
+  .product_show-main-pic{
+    display:grid;
+    position:relative;
+    height:400px;
+    place-items:center;
+    width:25%;
+    min-width:400px;
+    /* background:red; */
   }
