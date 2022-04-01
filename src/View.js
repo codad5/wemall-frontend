@@ -1,12 +1,14 @@
 import {useState, useEffect}from 'react'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import { useParams } from "react-router";
 import Header from './Header'
 import axios from 'axios';
 import Footer from './Footer'
 import BaseUrl from './components/BaseUrl';
 import ProductShow from './ProductShow'
 function View() {
-    
+    let { id } = useParams();
+    console.log(id)
     const  getStorage = () => {
         if (JSON.parse(sessionStorage.getItem("orderedProduct")) == undefined) return []
         return JSON.parse(sessionStorage.getItem("orderedProduct")).items
@@ -14,7 +16,7 @@ function View() {
     async function fetchData() {
         // You can await here
         const base = BaseUrl();
-        let url = base+'product/detail/' + navigateP.get('product');
+        let url = base+'product/detail/' + id;
         console.log(url);
         const response = await axios.get(url)
         .then((response) => {
@@ -82,7 +84,7 @@ function View() {
     }
     const navigate = useNavigate();
     const navigateP = new URLSearchParams(useLocation().search);
-    const [productid, setProductId] = useState(navigateP.get('product'))
+    const [productid, setProductId] = useState(id)
     const [product, setProduct] = useState(false)
     const [mainImage, setMainImage] = useState(product);
     const [orderQuantity, setQuantity] = useState((e) => {
@@ -251,7 +253,7 @@ function View() {
                                         <span className="product_show-main-price shimmer emp-price"></span>
                                     </div>
                                     <div className="product_show-product_size">
-                                          <span classMame="shimmer emp-price show-size"></span>
+                                          <span className="shimmer emp-price show-size"></span>
                                     </div>
                                     <div className="product_show-order-product">
                                         

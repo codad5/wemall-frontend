@@ -96,7 +96,7 @@ function ProductShow(props) {
             
             // postRedirect(product.product_id);
           }}><Link to={{
-              pathname: `view/?product=${product.product_id}`
+              pathname: `view/${product.product_id}`
               
           }}> {product.product_name}</Link> </div>
           <div className="product-price"> {setDiscount(product)}
