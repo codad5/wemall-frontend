@@ -7,7 +7,9 @@ function View() {
     async function fetchData() {
         // You can await here
         const base = BaseUrl();
-        const response = await axios.get(base+'product/detail/' + navigateP.get('product'))
+        let url = base+'product/detail/' + navigateP.get('product');
+        console.log(url);
+        const response = await axios.get(url)
             .then((response) => {
                 // console.log(response)
                 return response;

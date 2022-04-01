@@ -14,7 +14,9 @@ function ProductShow(props) {
   const [products, setProducts] = useState([]);
   
   useEffect(() => {
-    axios.get(base+'list/'+(props.param || 'category/all'))
+    let url = base + 'list/'+(props.param || 'category/all');
+    // console.lgo(url)
+    axios.get(url)
     .then((response) => {
       // console.log(response)
       setProducts(response.data.data)
