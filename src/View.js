@@ -2,26 +2,33 @@ import {useState, useEffect}from 'react'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import Header from './Header'
 import axios from 'axios';
+import Footer from './Footer'
 import BaseUrl from './components/BaseUrl';
+import ProductShow from './ProductShow'
 function View() {
+    
+    const  getStorage = () => {
+        if (JSON.parse(sessionStorage.getItem("orderedProduct")) == undefined) return []
+        return JSON.parse(sessionStorage.getItem("orderedProduct")).items
+    }
     async function fetchData() {
         // You can await here
         const base = BaseUrl();
         let url = base+'product/detail/' + navigateP.get('product');
         console.log(url);
         const response = await axios.get(url)
-            .then((response) => {
-                // console.log(response)
-                return response;
+        .then((response) => {
+            // console.log(response)
+            return response;
 
-            })
+        })
             .catch((e) => console.log(e));
-        // ...retur
-        // console.log(response)
-        return new Promise(resolve => {
-            return resolve(response);
-        });
-    }
+            // ...retur
+            // console.log(response)
+            return new Promise(resolve => {
+                return resolve(response);
+            });
+        }
     const setDiscountPer = (product) => {
         if (product.product_discount > 0) {
 
@@ -78,7 +85,24 @@ function View() {
     const [productid, setProductId] = useState(navigateP.get('product'))
     const [product, setProduct] = useState(false)
     const [mainImage, setMainImage] = useState(product);
+    const [orderQuantity, setQuantity] = useState((e) => {
+        if (getStorage().length > 0) {
+            if (getStorage().some((v) => {return v.product_id === productid})) {
+            let num = getStorage().filter((v) => {
+                // if (v.product_id === productid) {
+                    return v.product_id == productid
+                // }
+                
+            });
+            return num[0].quantity
+        }
+        }
+        return 0;
+    });
+    const [orderedProduct, setOrderProduct] = useState(getStorage() ?? [])
     useEffect(async () => {
+        window.scrollTo(0, 0);
+        
         let data = await fetchData();
         console.log(data.data)
         if(!data.data.error){
@@ -90,11 +114,15 @@ function View() {
         
         
     }, []);
-    
+    // useEffect(()=> {
+        // sessionStorage.setItem("orderedProduct", orderedProduct);
+
+    // }, [orderedProduct])
+    if (productid == null) navigate('/')
   return (
       
     <div>
-          <Header color='var(--main-black)'></Header>
+          <Header color='var(--main-black)' orderNumber=""></Header>
           <main style={{paddingTop: '70px'}}>
             <section className="product_show-hero">
             {/* to check if the api fetch was ok */}
@@ -162,6 +190,34 @@ function View() {
                                               </span>
                                               <span className="product_show-main-price">${product.data.data.product_price}</span>
                                           </div>
+                                          <div className="product_show-product_size">
+                                              <label for="priceTag">SIZE</label><span id="priceTag" className=" show-size">: {product.data.data.product_size}</span>
+                                          </div>
+                                          <form className="product_show-order-product" onSubmit={(e) => {
+                                              e.preventDefault();
+                                              let newOrder = {
+                                                  product_id: productid,
+                                                  quantity: orderQuantity
+                                              }
+                                              let newOrderSet = orderedProduct.filter((value) => {
+                                                  return value.product_id !== productid
+                                              })
+                                              setOrderProduct([...newOrderSet, newOrder])
+                                              let items = JSON.stringify({
+                                                  items: orderedProduct
+                                                })
+                                              sessionStorage.setItem("orderedProduct", items)
+                                            //   console.log(orderedProduct, sessionStorage.getItem("orderedProduct"));
+
+                                          }}>
+                                              <div className="product_show-order-quantity-wrapper">
+                                                  <button className="increase-quantity minus" type="button" onClick={() => { if (orderQuantity > 0) {setQuantity(orderQuantity - 1)}}}>-</button>
+                                                  <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => {setQuantity(e.target.value)}}/>
+                                                  <button className="increase-quantity plus" type="button" onClick={() => { if (orderQuantity < product.data.data.product_quantity ){setQuantity(orderQuantity + 1)}}}>+</button>
+
+                                              </div>
+                                              <button type="submit"> ADD TO CART</button>
+                                          </form>
                                       </div>
                                   </div>
                             </div>)
@@ -194,12 +250,21 @@ function View() {
                                         <span className="product_show-cut-price shimmer emp-price"></span>
                                         <span className="product_show-main-price shimmer emp-price"></span>
                                     </div>
+                                    <div className="product_show-product_size">
+                                          <span classMame="shimmer emp-price show-size"></span>
+                                    </div>
+                                    <div className="product_show-order-product">
+                                        
+                                    </div>
                                 </div>
                             </div>
                             
                         </div>)}
             </section>
+            
+              <ProductShow heading="you may also like"></ProductShow>
           </main>
+          <Footer></Footer>
     </div>
   )
 

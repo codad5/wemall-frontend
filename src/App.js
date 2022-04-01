@@ -16,7 +16,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <Header></Header>
+      <Header color='var(--main-white)' colorImportant="true"></Header>
       <main>
         <Hero bannerImage={baseUrl+"../assets/image/gallery/?image=622513e152fd34.82554223.png"}></Hero>
         <Featured fImages={fImages} ></Featured>
@@ -24,7 +24,7 @@ function App(props) {
             wh
         </section>
         <ProductShow value="100" param="category/all"></ProductShow> 
-        <ProductShow value="100"></ProductShow> 
+        <ProductShow value="100" heading="If you are a female"></ProductShow> 
       </main>
       <Footer></Footer>
 

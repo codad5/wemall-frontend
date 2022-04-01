@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom"
 import './index.css';
+import './smscreen.css';
 import App from './App';
 import View from './View';
 import PageNotFound from './404-page';

@@ -17,8 +17,10 @@
 
   --sm-font:10px;
   --md-font:20px;
+
   /* em size */
   --em-large:2em;
+  --em-md:1.4em;
 }
 @keyframes shimmer{
   from {
@@ -27,6 +29,9 @@
   to {
     background-position:0 0;
   }
+}
+.menu-bar{
+  display:none;
 }
 .shimmer{
   /* background:transparent !important; */
@@ -239,7 +244,15 @@ header nav li{
   flex-wrap: wrap;
   gap: 10px;
   justify-content: space-evenly;
+  padding:30px;
 
+}
+.product-card-heading{
+  width:100%;
+  display:block;
+  padding:0;
+  text-align:left !important;
+  font-weight:200;
 }
 
 
@@ -458,9 +471,10 @@ footer .footer_info-description{
 
   /* to style the  ProductShow.js */
 
-  .roduct_show-hero{
-    display:flex;
-    flex-wrap:wrap;
+  .product_show-hero {
+    /* display:flex; */
+    /* flex-wrap:wrap; */
+    padding:30px 0;
 
   }
 
@@ -644,4 +658,79 @@ footer .footer_info-description{
   .product_show-main-price{
     color:var(--main-black);
     text-decoration:line-through;
+  }
+
+  .product_show-product_size{
+    width:100%;
+    
+  }
+  .product_show-product_size label[for='priceTag']{
+    padding:0 5px;
+    color:var(--main-gray);
+  }
+  .product_show-product_size .show-size {
+    display:inline-block;
+    height:40px;
+    width:60px;
+  }
+  .product_show-order-product {
+    width:100%;
+    display:flex;
+    gap:20px;
+  }
+
+  .product_show-order-quantity-wrapper {
+    width:150px;
+    height:50px;
+    overflow:hidden;
+    display:inline-flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:26px;
+    border:solid 2px var(--main-grey);
+    
+    
+    
+  }
+  .product_show-order-product .increase-quantity {
+    height:100%;
+    width:25%;
+    border-radius:40px;
+    text-align:center;
+    /* flex-basis:25%; */
+    /* background:var(--main-orange); */
+    outline:none;
+    border:none;
+    font-size:30px;
+    font-weight:bold;
+    background:transparent;
+    flex-grow:0;
+    
+  }
+  .product_show-order-product input {
+    height:100%;
+    flex-basis:10%;
+    outline:none;
+    border:none;
+    width:auto;
+    padding:0 5px;
+    display:inline-block;
+    flex-grow:1;
+    max-width:50%;
+    text-align:center;
+    font-size:30px;
+    /* padding:0 20%; */
+    box-sizing:border-box;
+    overflow:hidden;
+
+  }
+  .product_show-order-product input::scrollbar {
+    display:none;
+  }
+  .product_show-order-product button[type="submit"] {
+    background:var(--main-orange);
+    outline:none;
+    border:none;
+    border-radius:40px;
+    padding:2px 20px;
   }
