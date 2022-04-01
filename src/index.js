@@ -7,6 +7,7 @@ import {
 import './index.css';
 import App from './App';
 import View from './View';
+import PageNotFound from './404-page';
 
 
 
@@ -19,7 +20,8 @@ render(
         <Route path="/" element={<App />} />
         <Route path="/men" element={<App gender="men" />} />
         <Route path="/view" element={<View gender="men" />} />
-        <Route path="*" element={<App />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route element={<PageNotFound />} />
         
       </Routes>
     </BrowserRouter>
