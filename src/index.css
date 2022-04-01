@@ -257,6 +257,8 @@ header nav li{
   flex-basis: 70%;
   width:100%;
   background:var(--main-grey);
+  background-size:cover;
+  
 
 }
 
