@@ -100,6 +100,26 @@ header > div{
   flex-basis:34%;
 
 }
+header .header-access_icon{
+  flex-basis:60%;
+  justify-content:flex-end;
+}
+
+.header-cart_icon{
+  position:relative;
+}
+.header-cart_icon_number{
+  position:absolute;
+  background:var(--main-black);
+  color:var(--main-white);
+  display:inline-grid;
+  width:20px;
+  height: 20px;
+  bottom:15px;
+  right:-10px;
+  border-radius:100%;
+  place-items:center;
+}
 header nav ul{
   height: 100%;
   display:inline-block;

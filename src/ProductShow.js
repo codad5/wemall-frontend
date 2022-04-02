@@ -83,8 +83,10 @@ function ProductShow(props) {
   }
   
   return (
-    <section className="product-show">
-      <h2 className="product-card-heading">{props.heading || 'Just for you'}</h2>
+    <section className="product-show">{
+      products.length > 0 ? 
+      (<h2 className="product-card-heading">{props.heading || 'Just for you'}</h2>) : ''
+    }
       {products.map((product) => <div key={product.product_id_private} className="product-container">
         <div className="product-image" style={{ background: `url(${product.product_image1})`}}>
 

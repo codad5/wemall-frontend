@@ -178,7 +178,7 @@ function View() {
                                   <div className="product_show-description-cnt">
                                       <div className="product_show-description-header">
                                           {
-                                              (product.data.data.product_discount > 0) ? (<div class="product_show-discount-badge">{setDiscountPer(product.data.data)}</div>) : (<div> </div>)
+                                              (product.data.data.product_discount > 0) ? (<div className="product_show-discount-badge">{setDiscountPer(product.data.data)}</div>) : (<div> </div>)
                                           
 
                                               
@@ -193,7 +193,7 @@ function View() {
                                               <span className="product_show-main-price">${product.data.data.product_price}</span>
                                           </div>
                                           <div className="product_show-product_size">
-                                              <label for="priceTag">SIZE</label><span id="priceTag" className=" show-size">: {product.data.data.product_size}</span>
+                                              <label htmlFor="priceTag">SIZE</label><span id="priceTag" className=" show-size">: {product.data.data.product_size}</span>
                                           </div>
                                           <form className="product_show-order-product" onSubmit={(e) => {
                                               e.preventDefault();
@@ -244,7 +244,7 @@ function View() {
                             </div>
                             <div className="product_show-description-cnt">
                                 <div className="product_show-description-header">
-                                      <div class=" emp-price shimmer product_show-discount-badge-shimmer"></div>
+                                      <div className=" emp-price shimmer product_show-discount-badge-shimmer"></div>
                                 </div>
                                 <div className="product_show-main-details">
                                     <div className="product_show-product_details-name"><span className="shimmer emp-price"></span></div>
