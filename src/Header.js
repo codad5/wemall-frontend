@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import Cartnav from './Cartnav'
+
 
 export default function Header(props){
     // console.log(Math.random())
     const getStorage = () => {
-        if (JSON.parse(sessionStorage.getItem("orderedProduct")) == undefined) return []
-        return JSON.parse(sessionStorage.getItem("orderedProduct")).items
+        if (JSON.parse(localStorage.getItem("orderedProduct")) == undefined) return []
+        return JSON.parse(localStorage.getItem("orderedProduct")).items
     }
     const [headerStyle, setHeaderStyle] = useState({ background: props.background ||'transparent',color: props.color, top: 0, transition: 'all 0s' });
     const [linkStyle, setLinkStyle] = useState({ color: props.color || 'inherit' });
     const [scrollHeight, setScrollHeight] = useState(window.scrollY);
-    const [orderedProduct, setOrderProduct] = useState(getStorage().length ?? 0)
-
+    const [orderedItem, setOrderedItem] = useState(getStorage())
+    const [orderedProduct, setOrderProduct] = useState(orderedItem.length ?? 0)
     
     useEffect(() => {
+        
         if (scrollHeight >= 518 || props.background != null) {
             setHeaderStyle({ background: 'var(--main-black)', top: 0, transition: 'all 0s', color: 'var(--main-white)' });
             setLinkStyle({ color: 'var(--main-white)' });
@@ -27,6 +30,7 @@ export default function Header(props){
 
         }
     }, [scrollHeight])
+    
     window.addEventListener('scroll', () => {
         setScrollHeight(window.scrollY);
         // console.log(window.scrollY);

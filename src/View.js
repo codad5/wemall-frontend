@@ -8,10 +8,10 @@ import BaseUrl from './components/BaseUrl';
 import ProductShow from './ProductShow'
 function View() {
     let { id } = useParams();
-    console.log(id)
+    // console.log(id)
     const  getStorage = () => {
-        if (JSON.parse(sessionStorage.getItem("orderedProduct")) == undefined) return []
-        return JSON.parse(sessionStorage.getItem("orderedProduct")).items
+        if (JSON.parse(localStorage.getItem("orderedProduct")) == undefined) return []
+        return JSON.parse(localStorage.getItem("orderedProduct")).items
     }
     async function fetchData() {
         // You can await here
@@ -82,6 +82,7 @@ function View() {
         }
 
     }
+    
     const navigate = useNavigate();
     const navigateP = new URLSearchParams(useLocation().search);
     const [productid, setProductId] = useState(id)
@@ -103,6 +104,7 @@ function View() {
     });
     const [orderedProduct, setOrderProduct] = useState(getStorage() ?? [])
     useEffect(async () => {
+        console.log('hello')
         window.scrollTo(0, 0);
         
         let data = await fetchData();
@@ -115,9 +117,29 @@ function View() {
         setProduct(data)
         
         
-    }, []);
+    }, [ProductShow]);
+    const addToCart = () => {
+        if (orderQuantity > 0) {
+
+            let newOrder = {
+                product_id: productid,
+                quantity: orderQuantity
+            };
+            let newOrderSet = orderedProduct.filter((value) => {
+                return value.product_id !== productid;
+            });
+            let newItems = [...newOrderSet, newOrder];
+            console.log(newItems);
+            let items = JSON.stringify({
+                items: newItems
+            });
+            localStorage.setItem("orderedProduct", items);
+            setOrderProduct(getStorage() ?? [])
+            //   console.log(orderedProduct, localStorage.getItem("orderedProduct"));
+        }
+    }
     // useEffect(()=> {
-        // sessionStorage.setItem("orderedProduct", orderedProduct);
+        // localStorage.setItem("orderedProduct", orderedProduct);
 
     // }, [orderedProduct])
     if (productid == null) navigate('/')
@@ -197,21 +219,10 @@ function View() {
                                           </div>
                                           <form className="product_show-order-product" onSubmit={(e) => {
                                               e.preventDefault();
-                                              let newOrder = {
-                                                  product_id: productid,
-                                                  quantity: orderQuantity
-                                              }
-                                              let newOrderSet = orderedProduct.filter((value) => {
-                                                  return value.product_id !== productid
-                                              })
-                                              setOrderProduct([...newOrderSet, newOrder])
-                                              let items = JSON.stringify({
-                                                  items: orderedProduct
-                                                })
-                                              sessionStorage.setItem("orderedProduct", items)
-                                            //   console.log(orderedProduct, sessionStorage.getItem("orderedProduct"));
+                                              addToCart();
 
-                                          }}>
+                                              
+                                            }}>
                                               <div className="product_show-order-quantity-wrapper">
                                                   <button className="increase-quantity minus" type="button" onClick={() => { if (orderQuantity > 0) {setQuantity(orderQuantity - 1)}}}>-</button>
                                                   <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => {setQuantity(e.target.value)}}/>

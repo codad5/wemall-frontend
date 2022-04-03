@@ -79,7 +79,9 @@ function ProductShow(props) {
 
   const postRedirect = (id) => {
     
-    navigate(`view/?product=${id}`)
+    // window.location.assign(`../../view/${id}`)
+    navigate(`../../view/${id}`)
+    // window.reload();
   }
   
   return (
@@ -97,10 +99,9 @@ function ProductShow(props) {
             // console.log(product.product_id)
             
             // postRedirect(product.product_id);
-          }}><Link to={{
-              pathname: `view/${product.product_id}`
+          }}><Link exact="true" to={`../../../view/${product.product_id}`
               
-          }}> {product.product_name}</Link> </div>
+          }> {product.product_name}</Link> </div>
           <div className="product-price"> {setDiscount(product)}
             ${product.product_price} </div>
         </div>
