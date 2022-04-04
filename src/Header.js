@@ -16,7 +16,6 @@ export default function Header(props){
     const [orderedProduct, setOrderProduct] = useState(orderedItem.length ?? 0)
     
     useEffect(() => {
-        
         if (scrollHeight >= 518 || props.background != null) {
             setHeaderStyle({ background: 'var(--main-black)', top: 0, transition: 'all 0s', color: 'var(--main-white)' });
             setLinkStyle({ color: 'var(--main-white)' });
@@ -30,6 +29,11 @@ export default function Header(props){
 
         }
     }, [scrollHeight])
+
+    useEffect(() => {
+        setOrderedItem(getStorage())
+
+    }, [props.key])
     
     window.addEventListener('scroll', () => {
         setScrollHeight(window.scrollY);

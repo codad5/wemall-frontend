@@ -82,28 +82,30 @@ function View() {
         }
 
     }
-    
+    const setOrderQuantity = () => {
+        if (getStorage().length > 0) {
+            if (getStorage().some((v) => { return v.product_id === productid })) {
+                let num = getStorage().filter((v) => {
+                    // if (v.product_id === productid) {
+                    return v.product_id == productid
+                    // }
+
+                });
+                return num[0].quantity
+            }
+        }
+        return 0;
+    }
     const navigate = useNavigate();
     const navigateP = new URLSearchParams(useLocation().search);
     const [productid, setProductId] = useState(id)
     const [product, setProduct] = useState(false)
     const [mainImage, setMainImage] = useState(product);
-    const [orderQuantity, setQuantity] = useState((e) => {
-        if (getStorage().length > 0) {
-            if (getStorage().some((v) => {return v.product_id === productid})) {
-            let num = getStorage().filter((v) => {
-                // if (v.product_id === productid) {
-                    return v.product_id == productid
-                // }
-                
-            });
-            return num[0].quantity
-        }
-        }
-        return 0;
-    });
+    const [orderQuantity, setQuantity] = useState(setOrderQuantity());
     const [orderedProduct, setOrderProduct] = useState(getStorage() ?? [])
+    const [headerKey, setHeaderKey] = useState(Math.random())
     useEffect(async () => {
+        // setQuantity(3)
         console.log('hello')
         window.scrollTo(0, 0);
         
@@ -115,6 +117,8 @@ function View() {
             
         }
         setProduct(data)
+        setQuantity(setOrderQuantity);
+        
         
         
     }, [ProductShow, useParams(), id]);
@@ -134,7 +138,9 @@ function View() {
                 items: newItems
             });
             localStorage.setItem("orderedProduct", items);
-            setOrderProduct(getStorage() ?? [])
+            
+            console.log(orderedProduct)
+            setHeaderKey(Math.random())
             //   console.log(orderedProduct, localStorage.getItem("orderedProduct"));
         }
     }
@@ -146,7 +152,7 @@ function View() {
   return (
       
     <div>
-          <Header color='var(--main-black)' orderNumber=""></Header>
+          <Header color='var(--main-black)' orderNumber="" key={headerKey}></Header>
           <main style={{paddingTop: '70px'}}>
             <section className="product_show-hero">
             {/* to check if the api fetch was ok */}
