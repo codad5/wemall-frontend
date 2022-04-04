@@ -20,7 +20,7 @@ render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/men" element={<App gender="men" />} />
-        <Route path="/view/:id" element={<View gender="men" />} />
+        <Route path="/view/:id" element={<View key={Math.random()} />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<PageNotFound />} />
         

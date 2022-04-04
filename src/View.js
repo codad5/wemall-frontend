@@ -117,7 +117,7 @@ function View() {
         setProduct(data)
         
         
-    }, [ProductShow]);
+    }, [ProductShow, useParams(), id]);
     const addToCart = () => {
         if (orderQuantity > 0) {
 
