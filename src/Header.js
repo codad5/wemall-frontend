@@ -77,6 +77,7 @@ export default function Header(props){
                 </div>
 
             </div>
+            <Cartnav></Cartnav>
         </header>
     )
 }
