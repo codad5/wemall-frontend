@@ -33,7 +33,7 @@ export default function Header(props){
     useEffect(() => {
         setOrderedItem(getStorage())
 
-    }, [props.key])
+    }, [props.key || 123])
     
     window.addEventListener('scroll', () => {
         setScrollHeight(window.scrollY);
@@ -76,8 +76,8 @@ export default function Header(props){
                     <span className="header-cart_icon_number">{orderedProduct}</span>
                 </div>
 
-            </div>
-            <Cartnav></Cartnav>
+              </div>
+            {/* <Cartnav cartkey={Math.random()}></Cartnav> */}
         </header>
     )
 }

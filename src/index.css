@@ -170,10 +170,11 @@ aside.cart-container{
   height:100vh;
   width:400px;
   max-width:100%;
-  background:var(--main-orange);
-  right:0;
+  background:var(--main-grey);
+  left:0;
   top:0;
   padding:10px 0px;
+  /* display:none; */
   
 }
 .cart-header{
@@ -209,14 +210,14 @@ aside.cart-container{
   
 }
 
-.cart-item-body::after{
+/* .cart-item-body::after{
   content:"";
   position:sticky;
   width:100%;
   height:80px;
   background:linear-gradient(#8f8d8a21,  #fbb13b44, #fbb13b5e, #fbb13b8c, #fbb03b);
   bottom:0;
-}
+} */
 
 .cart-item-box{
   width:90%;
@@ -226,6 +227,9 @@ aside.cart-container{
   align-items:center;
   padding:0 10px;
   justify-content:space-evenly;
+  position:relative;
+  border:solid 2px var(--main-black);
+  color:var(--main-black);
 
 }
 
@@ -261,18 +265,69 @@ aside.cart-container{
 
 
 .cart-item-total{
-  color:#9f9;
+  color:var(--main-orange);
   padding:0 10px;
 }
 .cart-item-action-btns{
   width:100%;
-  height:30%;
+  height:35%;
   font-size:var(--em-md);
   padding:0px 10px;
+  text-align:left;
+  gap:20px;
+  display:flex;
+  justify-content:flex-end;
+
 
 }
 .cart-item-action-btns a{
-  
+  text-decoration:none;
+  color:var(--main-whitw);
+  font-size:var(--md-font);
+  background:var(--main-orange);
+  padding:0px 5px;
+}
+.cart-item-action-btns button{
+  color:var(--main-whitw);
+  /* font-size:20px; */
+  font-size:var(--md-font);
+  background:var(--main-red);
+  outline:none;
+  border:none;
+  /* height:100%; */
+  padding:0px 5px;
+  /* border-radius:20px; */
+}
+
+.cart-item-badge{
+  position:absolute;
+  padding:5px;
+  font-size:0.8rem;
+  color:var(--main-white);
+  display:inline-block;
+  background:var(--main-black);
+  top:10px;
+  right:10px;
+  border-radius:50%;
+
+
+}
+
+.car-nav-checkout-cnt{
+  height:10%;
+  width:100%;
+  display:grid;
+  place-items:center;
+
+}
+
+.cart-nav-checkout{
+  text-decoration:none;
+  display:inline-block;
+  /* width:70%; */
+  padding:10px 20px;
+  background:var(--main-black);
+  color:var(--main-white);
 }
 /* section = Featured section begins */
 /* to style the landing Featured */

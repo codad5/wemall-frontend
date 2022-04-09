@@ -17,7 +17,7 @@ function View() {
         // You can await here
         const base = BaseUrl();
         let url = base+'product/detail/' + id;
-        console.log(url);
+        // console.log(url);
         const response = await axios.get(url)
         .then((response) => {
             // console.log(response)
@@ -106,11 +106,11 @@ function View() {
     const [headerKey, setHeaderKey] = useState(Math.random())
     useEffect(async () => {
         // setQuantity(3)
-        console.log('hello')
+        // console.log('hello')
         window.scrollTo(0, 0);
         
         let data = await fetchData();
-        console.log(data.data)
+        // console.log(data.data)
         if(!data.data.error){
             
             setMainImage(data.data.data.product_image1);
