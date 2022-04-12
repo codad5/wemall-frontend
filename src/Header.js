@@ -14,6 +14,7 @@ export default function Header(props){
     const [scrollHeight, setScrollHeight] = useState(window.scrollY);
     const [orderedItem, setOrderedItem] = useState(getStorage())
     const [orderedProduct, setOrderProduct] = useState(orderedItem.length ?? 0)
+    const [cartopen, setcartOpen] = useState(true)
     
     useEffect(() => {
         if (scrollHeight >= 518 || props.background != null) {
@@ -65,7 +66,9 @@ export default function Header(props){
                 </ul>
             </nav>
             <div className="header-access_icon" style={linkStyle}>
-                <div className="header-cart_icon">
+                <div className="header-cart_icon" onClick={() => {
+                    setcartOpen(!cartopen)
+                }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
                         <g id="noun_cart_2102832_4_" data-name="noun_cart_2102832 (4)" transform="translate(-6 -6)">
                             <path style={{fill:linkStyle.color}} id="Path_5" data-name="Path 5" d="M6.917,7.833H8.448l2.295,10.355a3.289,3.289,0,0,0-1.871,3.042,3.133,3.133,0,0,0,2.962,3.275H23.988a.917.917,0,1,0,0-1.833H11.833A1.332,1.332,0,0,1,10.7,21.231a1.332,1.332,0,0,1,1.128-1.442H23.988a.917.917,0,0,0,.863-.606l3.1-8.591a.917.917,0,0,0-.863-1.227H10.665l-.586-2.646A.916.916,0,0,0,9.184,6H6.917a.917.917,0,0,0,0,1.833ZM25.779,11.2l-2.435,6.758H12.568l-1.5-6.758H25.779Z"/>
@@ -77,7 +80,7 @@ export default function Header(props){
                 </div>
 
               </div>
-            {/* <Cartnav cartkey={Math.random()}></Cartnav> */}
+            <Cartnav cartkey={Math.random()} opened={cartopen}></Cartnav>
         </header>
     )
 }

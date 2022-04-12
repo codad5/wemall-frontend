@@ -5,7 +5,7 @@ import Hero from './Hero'
 import Featured from './Featured'
 import ProductShow from './ProductShow'
 import Footer from './Footer'
-import BaseUrl from './components/BaseUrl';
+import {BaseUrl} from './components/BaseUrl';
 
 
 

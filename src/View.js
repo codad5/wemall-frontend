@@ -4,15 +4,12 @@ import { useParams } from "react-router";
 import Header from './Header'
 import axios from 'axios';
 import Footer from './Footer'
-import BaseUrl from './components/BaseUrl';
+import { BaseUrl, setDiscount, getStorage } from './components/BaseUrl';
 import ProductShow from './ProductShow'
 function View() {
     let { id } = useParams();
     // console.log(id)
-    const  getStorage = () => {
-        if (JSON.parse(localStorage.getItem("orderedProduct")) == undefined) return []
-        return JSON.parse(localStorage.getItem("orderedProduct")).items
-    }
+    
     async function fetchData() {
         // You can await here
         const base = BaseUrl();
@@ -56,32 +53,7 @@ function View() {
             )
         }
     }
-    const setDiscount = (product) => {
-        if (product.product_discount > 0) {
-
-            let text = "";
-            switch (product.discount_method) {
-                case 'percentage':
-                    text = `${product.product_price - ((product.product_discount / 100) * product.product_price).toFixed(2)}`;
-                    // text = text.toFixed(2)
-                    break;
-                case 'price_cut':
-                    let price = 0;
-                    price = (product.product_price - product.product_discount);
-
-                    text = `${price}`;
-                    break;
-
-                default:
-                    return '';
-                    break;
-            }
-            return (
-                <span>${text}</span>
-            )
-        }
-
-    }
+    
     const setOrderQuantity = () => {
         if (getStorage().length > 0) {
             if (getStorage().some((v) => { return v.product_id === productid })) {
@@ -117,8 +89,8 @@ function View() {
             
         }
         // console.log(data);
+        setQuantity(setOrderQuantity());
         setProduct(data)
-        setQuantity(setOrderQuantity);
         
         
         
