@@ -101,6 +101,11 @@ header > div{
   flex-basis:34%;
 
 }
+
+.header-logo a{
+  text-decoration: none;
+  color:inherit;
+}
 header .header-access_icon{
   flex-basis:60%;
   justify-content:flex-end;

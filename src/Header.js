@@ -45,7 +45,7 @@ export default function Header(props){
     return (
         <header style={headerStyle}>
             <div className="header-logo" style={linkStyle}>
-                Wemall
+                <Link to={"../../../"}>Wemall</Link>
             </div>
             <nav>
                 <div className="menu-bar" style={{top:headerStyle.top}}>

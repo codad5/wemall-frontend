@@ -26,7 +26,7 @@ function App(props) {
         <ProductShow value="100" param="category/all"></ProductShow> 
         <ProductShow value="100" heading="If you are a female"></ProductShow> 
       </main>
-      <img id="test-pic" src={baseUrl + "../assets/image/gallery/ipic.php?image=622513e152fd34.82554223.png"}/>
+      
       <Footer></Footer>
 
     </div>
