@@ -5,6 +5,7 @@ import BaseUrl from './components/BaseUrl';
 
 
 export default function Cartnav(props){
+    const [cartItemArray, setCartItemArray] = useState([]);
     let i = 0;
     const getStorage = () => {
         if (JSON.parse(localStorage.getItem("orderedProduct")) == undefined) return []
@@ -29,7 +30,7 @@ export default function Cartnav(props){
             return resolve(response.data);
         });
     }
-    const setCartItem = async (item) => {
+    const getCartItem = async (item) => {
         let newArr = cartItemArray;
         let data = await fetchData(item.product_id);
         
@@ -41,11 +42,9 @@ export default function Cartnav(props){
         // console.log(getStorage().length , cartItemArray.length)
         
         i++;
-        // if (!newLocal){
-        console.log(cartItemArray, newArr, i);
-        console.log(...newLocal, data.data.product_name, i)
-        // setCartItemArray([...newLocal, data]);
-        // }
+        
+        return data;
+        
         
 
             // console.log(cartItemArray, data, item);
@@ -54,13 +53,24 @@ export default function Cartnav(props){
 
     }
     
-    const [cartItemArray, setCartItemArray] = useState([]);
-    getStorage().forEach(item => {
-        console.log(item)
-        setCartItem(item)
-    });
+    
     useEffect(() => {
-        
+        async function start(){
+            let items = getStorage();
+            this.cartitemArray = [];
+            getStorage().forEach(async (item) => {
+                // console.log(item)
+                let me = await fetchData(item.product_id);
+                this.cartitemArray.push(me)
+            });
+            setCartItemArray(this.cartitemArray);
+            console.log(this.cartItemArray)
+
+            return this.cartitemArray;
+            
+        }
+        start();
+        // setCartItemArray(start());
 
     }, [])
     
@@ -97,27 +107,7 @@ export default function Cartnav(props){
 
                     
                 }
-                {/* <div className="cart-item-box">
-                    <div className="cart-productImage"></div>
-                    <div className="cart-item-description">
-                        <div className="cart-product-name">
-                            Joes
-                        </div>
-                        <div className="cart-item-prices">
-                            <span>$100</span> <span className="cart-item-total">$1000</span>
-                        </div>
-                        <div className="cart-item-action-btns">
-                            <Link to={{
-                                pathname:'../view/hiagdfiub'
-                            }}>Edit</Link>
-                            <button type="submit">
-                                Delete
-                            </button>
-
-                        </div>
-                        <span className="cart-item-badge">10</span>
-                    </div>
-                </div> */}
+                
             </div>
             <div className="car-nav-checkout-cnt">
                 <Link className="cart-nav-checkout" to={{

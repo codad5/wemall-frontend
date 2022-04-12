@@ -33,7 +33,7 @@ export default function Header(props){
     useEffect(() => {
         setOrderedItem(getStorage())
 
-    }, [props.key || 123])
+    }, [props?.key])
     
     window.addEventListener('scroll', () => {
         setScrollHeight(window.scrollY);

@@ -116,6 +116,7 @@ function View() {
             setMainImage(data.data.data.product_image1);
             
         }
+        // console.log(data);
         setProduct(data)
         setQuantity(setOrderQuantity);
         
