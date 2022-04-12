@@ -18,7 +18,7 @@ function App(props) {
     <div className="App">
       <Header color='var(--main-white)' colorImportant="true"></Header>
       <main>
-        <Hero bannerImage={baseUrl+"../assets/image/gallery/ipic.php?image=622513e152fd34.82554223.png"}></Hero>
+        <Hero bannerImage={baseUrl+"../assets/image/gallery/622513e152fd34.82554223.png"}></Hero>
         <Featured fImages={fImages} ></Featured>
         <section className="whyus">
             wh

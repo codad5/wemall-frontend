@@ -32,7 +32,7 @@ export const setDiscount = (product, int_r = false) => {
                 break;
         }
         if (int_r) {
-            return price;
+            return price.toFixed(2);
         }
         return (
             <span>${text}</span>

@@ -180,8 +180,21 @@ aside.cart-container{
   top:0;
   padding:10px 0px;
   transition: all .7s ;
+  z-index:999999;
   /* display:none; */
   
+}
+
+.cartClose{
+  position:absolute;
+  /* top:20px; */
+  right:20px;
+  color:var(--main-white);
+  height:74%;
+  padding:4px 10px;
+  background:var(--main-red);
+  cursor:pointer;
+
 }
 .cart-header{
   width:100%;
@@ -191,6 +204,7 @@ aside.cart-container{
   /* justify-content:center; */
   align-items:center;
   padding:10px;
+  position:relative;
 
 
 

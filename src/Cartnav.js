@@ -7,11 +7,9 @@ import { BaseUrl, setDiscount, fetchData, getStorage, deleteCartItem } from './c
 export default function Cartnav(props){
     const [cartItemArray, setCartItemArray] = useState([]);
     const [deleted, setDelete] = useState(true);
+    const [cartopened, setCartopened] = useState(props.opened)
     let i = 0;
-    let cartStyle = {
-        left: "-100%",
-        writable: true
-    }
+    
     
     
 
@@ -42,16 +40,19 @@ export default function Cartnav(props){
         
     }, [deleted])
     useEffect(() => {
-        
+        setCartopened(props.opened)
     }, [props.opened])
     
     
     
     return (
-        <aside className="cart-container" style={props.opened ? {left:0} : {left:"-100%"}}>
+        <aside className="cart-container" style={cartopened ? {left:0} : {left:"-100%"}}>
+            
             <div className="cart-header">
                 Cart
-
+                <div class="cartClose" onClick={() => setCartopened(!cartopened)}>
+                    Close
+                </div>
             </div>
             <div className="cart-item-body">
                 {
