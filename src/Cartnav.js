@@ -55,8 +55,8 @@ export default function Cartnav(props){
             </div>
             <div className="cart-item-body">
                 {
-                    cartItemArray.length > 0 ? (cartItemArray?.map((item) => (<div key={item.product_id}className="cart-item-box">
-                        <div className="cart-productImage"></div>
+                    cartItemArray.length > 0 ? (cartItemArray?.map((item) => (<div key={item.data.product_id}className="cart-item-box">
+                        <div className="cart-productImage" style={{ backgroundImage: `url(${item.data.product_image1})`}}></div>
                         <div className="cart-item-description">
                             <div className="cart-product-name">
                                 {item.data.product_name}

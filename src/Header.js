@@ -14,7 +14,7 @@ export default function Header(props){
     const [scrollHeight, setScrollHeight] = useState(window.scrollY);
     const [orderedItem, setOrderedItem] = useState(getStorage())
     const [orderedProduct, setOrderProduct] = useState(orderedItem.length ?? 0)
-    const [cartopen, setcartOpen] = useState(true)
+    const [cartopen, setcartOpen] = useState(false)
     
     useEffect(() => {
         if (scrollHeight >= 518 || props.background != null) {
