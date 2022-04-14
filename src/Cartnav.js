@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react';
+import { AccessAlarm, ThreeDRotation, CloseOutlinedIcon } from '@mui/icons-material';
+// import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { BaseUrl, setDiscount, fetchData, getStorage, deleteCartItem } from './components/BaseUrl';
@@ -51,7 +53,7 @@ export default function Cartnav(props){
             <div className="cart-header">
                 Cart
                 <div class="cartClose" onClick={() => setCartopened(!cartopened)}>
-                    Close
+                    CloseOutlinedIcon
                 </div>
             </div>
             <div className="cart-item-body">

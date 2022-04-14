@@ -180,7 +180,7 @@ aside.cart-container{
   top:0;
   padding:10px 0px;
   transition: all .7s ;
-  z-index:999999;
+  z-index:99999999999999;
   /* display:none; */
   
 }
