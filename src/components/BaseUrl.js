@@ -63,7 +63,7 @@ export const getStorage = () => {
     if (JSON.parse(localStorage.getItem("orderedProduct")) == undefined) return []
     return JSON.parse(localStorage.getItem("orderedProduct")).items
 }
-export function deleteCartItem(id){
+export function deleteStorage(id){
     let newCart = getStorage().filter((value) => {
         return value.product_id != id;
     });

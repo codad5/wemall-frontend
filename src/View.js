@@ -54,17 +54,18 @@ function View() {
         }
     }
     
-    const setOrderQuantity = () => {
+    const setOrderQuantity = (productid) => {
+        console.log("Setting quantity for >> "+ productid)
         if (getStorage().length > 0) {
-            if (getStorage().some((v) => { return v.product_id === productid })) {
+            
                 let num = getStorage().filter((v) => {
                     // if (v.product_id === productid) {
-                    return v.product_id == productid
+                    return v.product_id === productid
                     // }
 
                 });
-                return num[0].quantity
-            }
+                if(num.length > 0) return num[0].quantity
+                return 0
         }
         return 0;
     }
@@ -73,7 +74,7 @@ function View() {
     const [productid, setProductId] = useState(id)
     const [product, setProduct] = useState(false)
     const [mainImage, setMainImage] = useState(product);
-    const [orderQuantity, setQuantity] = useState(setOrderQuantity());
+    const [orderQuantity, setQuantity] = useState(0);
     const [orderedProduct, setOrderProduct] = useState(getStorage() ?? [])
     const [headerKey, setHeaderKey] = useState(Math.random())
     useEffect(async () => {
@@ -89,30 +90,33 @@ function View() {
             
         }
         // console.log(data);
-        setQuantity(setOrderQuantity());
+        setOrderProduct(getStorage() ?? [])
         setProduct(data)
+        setProductId(id)  
+        setQuantity(setOrderQuantity(id))      
         
         
         
     }, [ProductShow, useParams(), id]);
     const addToCart = () => {
+        console.log(productid)
         if (orderQuantity > 0) {
 
             let newOrder = {
-                product_id: productid,
+                product_id: id,
                 quantity: orderQuantity
             };
             let newOrderSet = orderedProduct.filter((value) => {
-                return value.product_id !== productid;
+                return value.product_id !== newOrder.product_id;
             });
             let newItems = [...newOrderSet, newOrder];
-            console.log(newItems);
+            // console.log(newItems);
             let items = JSON.stringify({
                 items: newItems
             });
             localStorage.setItem("orderedProduct", items);
             
-            console.log(orderedProduct)
+            // console.log(orderedProduct)
             setHeaderKey(Math.random())
             //   console.log(orderedProduct, localStorage.getItem("orderedProduct"));
         }

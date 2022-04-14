@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
-import { AccessAlarm, ThreeDRotation, CloseOutlinedIcon } from '@mui/icons-material';
-// import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import { BaseUrl, setDiscount, fetchData, getStorage, deleteCartItem } from './components/BaseUrl';
+import { BaseUrl, setDiscount, fetchData, getStorage, deleteStorage } from './components/BaseUrl';
 
 
 export default function Cartnav(props){
@@ -32,12 +32,19 @@ export default function Cartnav(props){
        
 
     }
+    const deleteCartItem = (id) => {
+        let newCart = cartItemArray.filter((v) => {
+            return v.data.product_id !== id;
+        });
+
+        setCartItemArray(newCart)
+    }
     
     
     useEffect(() => {
         
         // setCartItemArray(start());
-
+        
         getStorage().forEach( item => setCartItem(item));
         
     }, [deleted])
@@ -53,7 +60,10 @@ export default function Cartnav(props){
             <div className="cart-header">
                 Cart
                 <div class="cartClose" onClick={() => setCartopened(!cartopened)}>
-                    CloseOutlinedIcon
+                    {/* <AccessAlarm> Hi </AccessAlarm>  */}
+
+                    close
+                    {/* <svg data-testid="AccessAlarm"></svg> */}
                 </div>
             </div>
             <div className="cart-item-body">
@@ -72,8 +82,9 @@ export default function Cartnav(props){
                                 }>Edit</Link>
                                 <button type="button" onClick={(e) => {
                                     e.preventDefault();
+                                    deleteStorage(item.data.product_id)
                                     deleteCartItem(item.data.product_id)
-                                    setDelete(!deleted);
+                                    
                                 }}>
                                     Delete
                                 </button>
