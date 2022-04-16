@@ -99,9 +99,7 @@ export default function Cartnav(props){
                 
             </div>
             <div className="car-nav-checkout-cnt">
-                <Link className="cart-nav-checkout" to={{
-                    pathname: "hbiabfeib"
-                }}>CHECKOUT</Link>
+                <Link className="cart-nav-checkout" to={"../../../checkout"}>CHECKOUT</Link>
             </div>
         </aside>
     )

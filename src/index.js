@@ -9,6 +9,7 @@ import './smscreen.css';
 import App from './App';
 import View from './View';
 import PageNotFound from './404-page';
+import Checkout from './Checkout'
 
 
 
@@ -19,7 +20,7 @@ render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/men" element={<App gender="men" />} />
+        <Route path="/checkout" element={<Checkout gender="men" />} />
         <Route path="/view/:id" element={<View key={Math.random()} />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<PageNotFound />} />

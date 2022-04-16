@@ -73,3 +73,16 @@ export function deleteStorage(id){
     localStorage.setItem("orderedProduct", items);
     return true;
 }
+
+export async function SignupController(data = {
+    name:false,
+    phone: false,
+    email:false,
+    password:false
+}){
+    let returnData;
+    axios.post(BaseUrl() + '/api/signup', JSON.stringify(data))
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
+
+}

@@ -55,7 +55,7 @@ function View() {
     }
     
     const setOrderQuantity = (productid) => {
-        console.log("Setting quantity for >> "+ productid)
+        // console.log("Setting quantity for >> "+ productid)
         if (getStorage().length > 0) {
             
                 let num = getStorage().filter((v) => {
@@ -99,7 +99,7 @@ function View() {
         
     }, [ProductShow, useParams(), id]);
     const addToCart = () => {
-        console.log(productid)
+        // console.log(productid)
         if (orderQuantity > 0) {
 
             let newOrder = {
