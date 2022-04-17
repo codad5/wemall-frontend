@@ -15,7 +15,7 @@ export function Signup(){
     
     return (
         <section>
-            <htmlForm method="POST" onSubmit={(e)=> {
+            <form method="POST" onSubmit={(e)=> {
                 e.preventDefault();
                 SignupController(signUpdata)
 
