@@ -1,11 +1,15 @@
 import {useState, useEffect} from 'react'
-import { SignupController } from './components/BaseUrl'
+import { SignupController, LoginController } from './components/BaseUrl'
+import { useNavigate } from 'react-router-dom';
+
 
 export function Signup(){
     const [name, SetName] = useState("");
     const [tel, SetTel] = useState(0);
     const [email, SetEmail] = useState();
     const [password, SetPassword] = useState();
+    let navigate = useNavigate();
+
     const signUpdata = {
         name: name,
         phone: tel,
@@ -15,9 +19,14 @@ export function Signup(){
     
     return (
         <section>
-            <form method="POST" onSubmit={(e)=> {
+            <form method="POST" onSubmit={async (e)=> {
                 e.preventDefault();
-                SignupController(signUpdata)
+                let signupDetails = await SignupController(signUpdata);
+                console.log(signupDetails);
+                if(!signupDetails.error){
+                    let LoginDetails = await LoginController({username: email, password:password});
+                    navigate("/checkout")
+                }
 
             }}>
                 <label htmlFor="name">Name</label>
@@ -37,9 +46,37 @@ export function Signup(){
     )
 }
 export function Login(){
+    const [name, SetName] = useState("");
+    const [tel, SetTel] = useState(0);
+    const [email, SetEmail] = useState();
+    const [password, SetPassword] = useState();
+    let navigate = useNavigate();
+
+    const Logindata = {
+        username: name,
+        password: password
+    }
     return (
         <section>
             <div>Subscribe</div>
+            <form method="POST" onSubmit={async (e)=> {
+                e.preventDefault();
+                let LoginDetails = await LoginController(Logindata);
+                // console.log(LoginDetails);
+                if (!LoginDetails.error) {
+                    // let LoginDetails = await LoginController({ username: email, password: password });
+                    
+                    navigate("/checkout")
+                    // console.log("worth")
+                }
+
+            }}>
+            <label htmlFor="name">Email/Phone</label>
+                <input type="email" id="name" placeholder="Enter Email" onChange={(e) => SetName(e.target.value)}/>
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
+                <button type="submit">SIGNUP</button>
+            </form>
         </section>
 
     )

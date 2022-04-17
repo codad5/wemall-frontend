@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
+
 export function BaseUrl(){
     if(window.location.hostname === 'localhost'){
         return 'http://localhost/wemall/api/';
@@ -80,9 +83,39 @@ export async function SignupController(data = {
     email:false,
     password:false
 }){
-    let returnData;
-    axios.post(BaseUrl() + '/api/signup', JSON.stringify(data))
-    .then((response) => console.log(response))
+    let returnData = await axios.post(BaseUrl() + '/api/signup', JSON.stringify(data))
+    .then((response) => {
+        // console.log(response)
+        return response.data; 
+    })
     .catch((error) => console.log(error))
+
+    return new Promise(resolve => {
+        return resolve(returnData);
+    });
+
+}
+
+export async function LoginController(data = {
+    username : false,
+    password : false,
+}, move = false){
+    // let navigate = useNavigate();
+
+    // console.log(data)
+    let returnData = await axios.post(BaseUrl() + '/api/login', JSON.stringify(data))
+    .then((response) => {
+        // console.log(response)
+        return response.data; 
+    })
+    .catch((error) => console.log(error))
+    if(!returnData.error){
+
+        localStorage.setItem("loggedUser", JSON.stringify(returnData));
+    }
+
+    return new Promise(resolve => {
+        return resolve(returnData);
+    });
 
 }

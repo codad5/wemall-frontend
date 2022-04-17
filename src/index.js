@@ -21,6 +21,7 @@ render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/checkout" element={<Checkout gender="men" />} />
+        <Route path="/login" element={<Checkout gender="men" />} />
         <Route path="/view/:id" element={<View key={Math.random()} />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<PageNotFound />} />
