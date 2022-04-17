@@ -15,21 +15,21 @@ export function Signup(){
     
     return (
         <section>
-            <form method="POST" onSubmit={(e)=> {
+            <htmlForm method="POST" onSubmit={(e)=> {
                 e.preventDefault();
                 SignupController(signUpdata)
 
             }}>
-                <label for="name">Name</label>
+                <label htmlFor="name">Name</label>
                 <input type="text" id="name" placeholder="Enter name" onChange={(e) => {
                     SetName(e.target.value)
                     // console.log(signUpdata)
                 }}/>
-                <label for="number">Number</label>
+                <label htmlFor="number">Number</label>
                 <input type="tel" id="number" placeholder="Enter number" onChange={(e) => SetTel(e.target.value)}/>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input type="email" id="email" placeholder="Enter Email" onChange={(e) => SetEmail(e.target.value)}/>
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
                 <button type="submit">SIGNUP</button>
             </form>
