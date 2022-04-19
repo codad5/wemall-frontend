@@ -138,8 +138,8 @@ export async function submitOrder(data = {
     },
     cart:{
 
-    }
-
+    },
+    payment_method:""
 
 }){
     let returnData = await axios.post(BaseUrl() + '/api/order', JSON.stringify(data))

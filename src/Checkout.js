@@ -14,7 +14,8 @@ function Checkout(props){
     const orderPost = {
         user: loggedin,
         totalPrice: totalPrice,
-        cartItem: cartItemArray
+        cartItem: cartItemArray,
+        payment_method: 'payStack'
     }
     const history = useLocation()
     let navigate = useNavigate();
@@ -57,7 +58,7 @@ function Checkout(props){
 
     useEffect(() => {
 
-        // setCartItemArray(start());
+        
 
         
         setTotal(sumItemArray(cartItemArray))
@@ -65,7 +66,7 @@ function Checkout(props){
     }, [cartItemArray])
     useEffect(() => {
 
-        // setCartItemArray(start());
+        
 
         getStorage().forEach(item => setCartItem(item));
         setTotal(sumItemArray(cartItemArray))
@@ -125,7 +126,8 @@ function Checkout(props){
                                         login_detail: loggedin,
                                         cart:{
                                             items: cartItemArray
-                                        }
+                                        },
+                                        payment_method:"payStack"
                                     })}>
                                         PURCHASE $ {totalPrice}
                                         </button>
