@@ -83,7 +83,7 @@ export async function SignupController(data = {
     email:false,
     password:false
 }){
-    let returnData = await axios.post(BaseUrl() + '/api/signup', JSON.stringify(data))
+    let returnData = await axios.post(BaseUrl() + '/auth/signup', JSON.stringify(data))
     .then((response) => {
         // console.log(response)
         return response.data; 
@@ -103,7 +103,8 @@ export async function LoginController(data = {
     // let navigate = useNavigate();
 
     // console.log(data)
-    let returnData = await axios.post(BaseUrl() + '/api/login', JSON.stringify(data))
+    console.log(BaseUrl() + '/auth/login');
+    let returnData = await axios.post(BaseUrl() + '/auth/login', JSON.stringify(data))
     .then((response) => {
         // console.log(response)
         return response.data; 
@@ -118,4 +119,33 @@ export async function LoginController(data = {
         return resolve(returnData);
     });
 
+}
+
+
+export function sumItemArray(items){
+    let i = 0;
+    items.forEach((item) => {
+        i += setDiscount(item.data, true) * item.quantity;
+    })
+
+    return i;
+
+}
+
+export async function submitOrder(data = {
+    login_detail:{
+
+    },
+    cart:{
+
+    }
+
+
+}){
+    let returnData = await axios.post(BaseUrl() + '/api/order', JSON.stringify(data))
+        .then((response) => {
+            console.log(response)
+            return response.data;
+        })
+        .catch((error) => console.log(error))
 }

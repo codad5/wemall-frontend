@@ -38,8 +38,8 @@ export function Signup(){
                 <input type="tel" id="number" placeholder="Enter number" onChange={(e) => SetTel(e.target.value)}/>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" placeholder="Enter Email" onChange={(e) => SetEmail(e.target.value)}/>
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
+                <label htmlFor="loginpassword">Password</label>
+                <input type="password" id="loginpassword" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
                 <button type="submit">SIGNUP</button>
             </form>
         </section>
@@ -71,8 +71,8 @@ export function Login(){
                 }
 
             }}>
-            <label htmlFor="name">Email/Phone</label>
-                <input type="email" id="name" placeholder="Enter Email" onChange={(e) => SetName(e.target.value)}/>
+                <label htmlFor="username">Email/Phone</label>
+                <input type="email" id="username" placeholder="Enter Email" onChange={(e) => SetName(e.target.value)}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
                 <button type="submit">SIGNUP</button>

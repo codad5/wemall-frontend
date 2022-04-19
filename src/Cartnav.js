@@ -59,7 +59,7 @@ export default function Cartnav(props){
             
             <div className="cart-header">
                 Cart
-                <div class="cartClose" onClick={() => setCartopened(!cartopened)}>
+                <div className="cartClose" onClick={() => setCartopened(!cartopened)}>
                     {/* <AccessAlarm> Hi </AccessAlarm>  */}
 
                     close

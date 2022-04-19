@@ -239,8 +239,14 @@ aside.cart-container{
   bottom:0;
 } */
 
+.checkout-main .cart-item-box{
+   aspect-ratio:6/1.5 ;
+   height:auto;
+}
+
 .cart-item-box{
   width:90%;
+  /* aspect-ratio:6/1; */
   height:100px;
   display:flex;
   background:var(--main-grey);
@@ -308,6 +314,8 @@ aside.cart-container{
   font-size:var(--md-font);
   background:var(--main-orange);
   padding:0px 5px;
+  display: grid;
+  place-items: center;
 }
 .cart-item-action-btns button{
   color:var(--main-whitw);
