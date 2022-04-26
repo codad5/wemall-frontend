@@ -11,6 +11,7 @@ function Checkout(props){
     const [cartItemArray, setCartItemArray] = useState([]);
     const [deleted, setDelete] = useState(true);
     const [totalPrice, setTotal] = useState(sumItemArray(cartItemArray));
+    const [initiatePay, setPayment] = (false)
     const orderPost = {
         user: loggedin,
         totalPrice: totalPrice,
@@ -122,13 +123,17 @@ function Checkout(props){
                                                 cartItemArray.map((item) => <li key={item.data.product_id}>{item.data.product_name}</li>)
                                             }
                                         </ul>
-                                    <button onClick={() => submitOrder({
+                                    <button onClick={async () => {
+                                        let OrderData  = await submitOrder({
                                         login_detail: loggedin,
                                         cart:{
                                             items: cartItemArray
                                         },
                                         payment_method:"payStack"
-                                    })}>
+                                    }
+
+                                    
+                                    )}}>
                                         PURCHASE $ {totalPrice}
                                         </button>
                                     </div> : ""
@@ -136,6 +141,7 @@ function Checkout(props){
 
                         </div>
             }
+            { !initiatePay ? "paynow" : 'No payment'}
             </main>
             
         </div>

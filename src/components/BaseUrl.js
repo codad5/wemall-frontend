@@ -76,6 +76,13 @@ export function deleteStorage(id){
     localStorage.setItem("orderedProduct", items);
     return true;
 }
+export function emptyCart(){
+    let items = JSON.stringify({
+        items: []
+    });
+    localStorage.setItem("orderedProduct", items);
+    return true;
+}
 
 export async function SignupController(data = {
     name:false,
@@ -148,4 +155,8 @@ export async function submitOrder(data = {
             return response.data;
         })
         .catch((error) => console.log(error))
+
+    return new Promise(resolve => {
+        return resolve(returnData);
+    });
 }
