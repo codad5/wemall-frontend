@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {Signup, Login} from './Login'
 import Header from "./Header"
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder } from "./components/BaseUrl"
+import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin } from "./components/BaseUrl"
 
 
 function Checkout(props){
@@ -11,7 +11,7 @@ function Checkout(props){
     const [cartItemArray, setCartItemArray] = useState([]);
     const [deleted, setDelete] = useState(true);
     const [totalPrice, setTotal] = useState(sumItemArray(cartItemArray));
-    const [initiatePay, setPayment] = (false)
+    const [initiatePay, setPayment] = useState(false)
     const orderPost = {
         user: loggedin,
         totalPrice: totalPrice,
@@ -132,8 +132,17 @@ function Checkout(props){
                                         payment_method:"payStack"
                                     }
 
+ 
                                     
-                                    )}}>
+                                    )
+                                    console.log(OrderData)
+                                    if(OrderData.error !== false && OrderData.message == 'Some Bad Jwt'){
+                                        invalidLogin()
+                                        console.log("faliure')")
+                                    }
+
+                                    
+                                }}>
                                         PURCHASE $ {totalPrice}
                                         </button>
                                     </div> : ""
@@ -141,7 +150,7 @@ function Checkout(props){
 
                         </div>
             }
-            { !initiatePay ? "paynow" : 'No payment'}
+            
             </main>
             
         </div>
