@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import {Signup, Login} from './Login'
+import { usePaystackPayment } from "react-paystack"
 import Header from "./Header"
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin } from "./components/BaseUrl"
+import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin, initiatePayment } from "./components/BaseUrl"
 
 
 function Checkout(props){
@@ -18,19 +19,50 @@ function Checkout(props){
         cartItem: cartItemArray,
         payment_method: 'payStack'
     }
+    const loginDetail = JSON.parse(loggedin)?.data
+    // console.log(JSON.parse(loggedin).data);
+    const payStackinfoo = {
+        firstname: loginDetail?.name,
+        lastname:"",
+        phone: loginDetail?.phone,
+        email:loginDetail?.email,
+        amount:"",
+        reference:"",
+        metadata : {},
+        currency : 'NGN',
+        channels:"",
+        label : '',
+        plan : '',
+        quantity : '',
+        subaccount : '',
+        transaction_charge : 0,
+        bearer : 'account',
+        split:"",
+        split_code:"",
+    }
+
+    
+
     const history = useLocation()
+    let currentPath = history.pathname
     let navigate = useNavigate();
     useEffect(() => {
-        SetLogin(localStorage.getItem('loggedUser') || false)
-        console.log(history);
-        if (loggedin === false && history.pathname !== "/login") {
-            navigate("/login");
-        }
-        else{
-            navigate("/checkout");
+        
+            let newloginState = localStorage.getItem('loggedUser') || false
+        // console.log(currentPath, newloginState);
+            if (newloginState === false && currentPath != "/login") {
+                SetLogin(false)
+                navigate("/login");
+            }
+            else if(newloginState != false) {
+                SetLogin(newloginState)
+                navigate("/checkout");
 
-        }
-    }, [history])
+            }
+            // return newloginState
+        
+        
+    }, [currentPath])
 
     const setCartItem = async (item) => {
 
@@ -138,7 +170,12 @@ function Checkout(props){
                                     console.log(OrderData)
                                     if(OrderData.error !== false && OrderData.message == 'Some Bad Jwt'){
                                         invalidLogin()
+                                        navigate("/login")
                                         console.log("faliure')")
+                                    }
+                                    else if(OrderData.error == false){
+                                        console.log("here")
+                                        initiatePayment('payStack', payStackinfoo)
                                     }
 
                                     
@@ -150,7 +187,7 @@ function Checkout(props){
 
                         </div>
             }
-            
+                {/* <usePaystackPayment></usePaystackPayment> */}
             </main>
             
         </div>
