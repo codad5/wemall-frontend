@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Signup, Login} from './Login'
 import { usePaystackPayment } from "react-paystack"
 import Header from "./Header"
