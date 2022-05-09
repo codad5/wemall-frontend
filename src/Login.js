@@ -24,9 +24,12 @@ export function Signup(){
             <form method="POST" onSubmit={async (e)=> {
                 e.preventDefault();
                 let signupDetails = await SignupController(signUpdata);
+                alert(signupDetails.message)
+
                 console.log(signupDetails);
                 if(!signupDetails.error){
                     let LoginDetails = await LoginController({username: email, password:password});
+                    alert(LoginDetails.message)
                     navigate("/checkout")
                 }
 
@@ -65,6 +68,8 @@ export function Login(){
                 e.preventDefault();
                 let LoginDetails = await LoginController(Logindata);
                 console.log(LoginDetails);
+                alert(LoginDetails.message)
+
                 if (!LoginDetails.error) {
                     // let LoginDetails = await LoginController({ username: email, password: password });
                     
