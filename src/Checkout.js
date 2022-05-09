@@ -146,6 +146,9 @@ function Checkout(props){
                 loggedin === false ? 
                 <section>
                     <Signup></Signup>
+                    <br/>
+                    <br/>
+                    <br/>
                     <Login></Login>
                         </section> : <div className="cart-item-body">
                             {

@@ -75,7 +75,7 @@ export function Login(){
                 <input type="email" id="username" placeholder="Enter Email" onChange={(e) => SetName(e.target.value)}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
-                <button type="submit">SIGNUP</button>
+                <button type="submit">LOGIN</button>
             </form>
         </section>
 
