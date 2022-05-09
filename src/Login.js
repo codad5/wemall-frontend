@@ -19,6 +19,8 @@ export function Signup(){
     
     return (
         <section>
+            <h2>SIGNUP</h2>
+
             <form method="POST" onSubmit={async (e)=> {
                 e.preventDefault();
                 let signupDetails = await SignupController(signUpdata);
@@ -58,7 +60,7 @@ export function Login(){
     }
     return (
         <section>
-            <div>Subscribe</div>
+            <h2>LOGIN</h2>
             <form method="POST" onSubmit={async (e)=> {
                 e.preventDefault();
                 let LoginDetails = await LoginController(Logindata);
