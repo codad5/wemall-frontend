@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePaystackPayment } from "react-paystack"
 
 
-export const paystack_key = "ydiauiagovab";
+export const paystack_key = "pk_test_5a0c5ef637b30a2f39eb18ad3ba33974401928df";
 export function BaseUrl(){
     if(window.location.hostname === 'localhost'){
         return 'http://localhost/wemall/api/';
@@ -122,7 +122,7 @@ export async function LoginController(data = {
     if(!returnData.error){
 
         localStorage.setItem("loggedUser", JSON.stringify(returnData));
-        setCookie('loggedUser', JSON.stringify(returnData), returnData.login_token.exptime)
+        // setCookie('loggedUser', JSON.stringify(returnData), returnData.login_token.exptime)
     }
 
     return new Promise(resolve => {
@@ -191,23 +191,12 @@ export function getCookie(cname) {
   }
   return false;
 }
-function payStack(param){
-    // try{
 
-    //     usePaystackPayment(payStackinfoo)
-    // }
-    // catch(err){
-    //     console.log(err)
-    // }
-    return {
-
-    }
-}
 export function initiatePayment(method = '', param){
     switch (method){
         case 'payStack':
             param.publicKey = paystack_key;
-            return payStack(param);
+            return param
         break;
         default:
             return false;

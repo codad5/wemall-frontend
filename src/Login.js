@@ -62,7 +62,7 @@ export function Login(){
             <form method="POST" onSubmit={async (e)=> {
                 e.preventDefault();
                 let LoginDetails = await LoginController(Logindata);
-                // console.log(LoginDetails);
+                console.log(LoginDetails);
                 if (!LoginDetails.error) {
                     // let LoginDetails = await LoginController({ username: email, password: password });
                     

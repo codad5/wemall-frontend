@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Signup, Login} from './Login'
-import { usePaystackPayment } from "react-paystack"
+import { usePaystackPayment } from 'react-paystack'
 import Header from "./Header"
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin, initiatePayment } from "./components/BaseUrl"
+import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin, initiatePayment, paystack_key } from "./components/BaseUrl"
 
 
 function Checkout(props){
@@ -20,26 +20,36 @@ function Checkout(props){
         payment_method: 'payStack'
     }
     const loginDetail = JSON.parse(loggedin)?.data
+    const [config, setConfig] = useState({
+        reference: (new Date()).getTime().toString(),
+        email: loginDetail?.email,
+        amount: 2000,
+        publicKey: paystack_key,
+    })
+
+    // const config = ;
+    const initializePayment = usePaystackPayment(config);
+
     // console.log(JSON.parse(loggedin).data);
-    const payStackinfoo = {
-        firstname: loginDetail?.name,
-        lastname:"",
-        phone: loginDetail?.phone,
-        email:loginDetail?.email,
-        amount:"",
-        reference:"",
-        metadata : {},
-        currency : 'NGN',
-        channels:"",
-        label : '',
-        plan : '',
-        quantity : '',
-        subaccount : '',
-        transaction_charge : 0,
-        bearer : 'account',
-        split:"",
-        split_code:"",
-    }
+    // const payStackinfoo = {
+    //     firstname: loginDetail?.name,
+    //     lastname:"",
+    //     phone: loginDetail?.phone,
+    //     email:loginDetail?.email,
+    //     amount:"",
+    //     reference:"",
+    //     metadata : {},
+    //     currency : 'NGN',
+    //     channels:"",
+    //     label : '',
+    //     plan : '',
+    //     quantity : '',
+    //     subaccount : '',
+    //     transaction_charge : 0,
+    //     bearer : 'account',
+    //     split:"",
+    //     split_code:"",
+    // }
 
     
 
@@ -105,8 +115,25 @@ function Checkout(props){
         setTotal(sumItemArray(cartItemArray))
 
     }, [deleted])
-    
-    
+    const onSuccess = (reference) => {
+        // Implementation for whatever you want to do with reference and after success call.
+        console.log(reference);
+    };
+
+    // you can call this function anything
+    const onClose = () => {
+        // implementation for  whatever you want to do when the Paystack dialog closed.
+        console.log('closed')
+    }
+    const PaystackHookExample = () => {
+        return (
+            <div>
+                <button onClick={() => {
+                    initializePayment(onSuccess, onClose)
+                }}>Paystack Hooks Implementation</button>
+            </div>
+        );
+    };
     return (
         <div className="checkout-main">
             <Header color='var(--main-black)' orderNumber="" key={headerKey}></Header>
@@ -175,7 +202,15 @@ function Checkout(props){
                                     }
                                     else if(OrderData.error == false){
                                         console.log("here")
-                                        initiatePayment('payStack', payStackinfoo)
+                                        // initiatePayment('payStack', config)
+                                        let semi = config;
+
+                                        semi.reference = OrderData.data.payment_id.reference
+                                        semi.amount = totalPrice * 100
+                                        setConfig(semi)
+                                        console.log(config, "hello")
+                                        initializePayment(onSuccess, onClose)
+
                                     }
 
                                     
@@ -188,6 +223,7 @@ function Checkout(props){
                         </div>
             }
                 {/* <usePaystackPayment></usePaystackPayment> */}
+                {/* <PaystackHookExample></PaystackHookExample> */}
             </main>
             
         </div>
