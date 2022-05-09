@@ -1,4 +1,4 @@
-import {useState, useEffect}from 'react'
+import React, {useState, useEffect}from 'react'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { useParams } from "react-router";
 import Header from './Header'
