@@ -128,15 +128,7 @@ function Checkout(props){
         // implementation for  whatever you want to do when the Paystack dialog closed.
         console.log('closed')
     }
-    const PaystackHookExample = () => {
-        return (
-            <div>
-                <button onClick={() => {
-                    initializePayment(onSuccess, onClose)
-                }}>Paystack Hooks Implementation</button>
-            </div>
-        );
-    };
+    
     return (
         <div className="checkout-main">
             <Header color='var(--main-black)' orderNumber="" key={headerKey}></Header>
