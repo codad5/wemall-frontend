@@ -83,6 +83,10 @@ export function emptyCart(){
         items: []
     });
     localStorage.setItem("orderedProduct", items);
+    setTimeout(() => {
+
+        window.location.reload()
+    }, 3000)
     return true;
 }
 

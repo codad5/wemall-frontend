@@ -3,7 +3,7 @@ import {Signup, Login} from './Login'
 import { usePaystackPayment } from 'react-paystack'
 import Header from "./Header"
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin, initiatePayment, paystack_key } from "./components/BaseUrl"
+import { fetchData, getStorage, deleteStorage, setDiscount, sumItemArray, submitOrder, invalidLogin, initiatePayment, paystack_key, emptyCart } from "./components/BaseUrl"
 
 
 function Checkout(props){
@@ -118,6 +118,9 @@ function Checkout(props){
     const onSuccess = (reference) => {
         // Implementation for whatever you want to do with reference and after success call.
         console.log(reference);
+        if(reference.status == 'success'){
+            emptyCart()
+        }
     };
 
     // you can call this function anything
