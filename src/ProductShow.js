@@ -5,6 +5,7 @@ import {BaseUrl} from './components/BaseUrl';
 
 
 function ProductShow(props) {
+  
   const base= BaseUrl();
   let navigateP = new URLSearchParams(useLocation().search);
   // console.log(useSearchParams())
@@ -16,14 +17,16 @@ function ProductShow(props) {
   useEffect(() => {
     let url = base + 'list/'+(props.param || 'category/all');
     // console.lgo(url)
+    
     axios.get(url)
     .then((response) => {
       // console.log(response)
+      console.log(props.productId)
       setProducts(response.data.data)
     })
     .catch((e) => console.log(e))
 
-  }, [])
+  }, [props.productId])
   const setDiscountPer = (product) => {
     if(product.product_discount > 0) {
 
@@ -89,7 +92,7 @@ function ProductShow(props) {
       products.length > 0 ? 
       (<h2 className="product-card-heading">{props.heading || 'Just for you'}</h2>) : ''
     }
-      {products.map((product) => <div key={product.product_id_private} className="product-container">
+      {products.map((product) => product.product_id === props?.productId ? null : <div key={product.product_id_private} className="product-container">
         <div className="product-image" style={{ background: `url(${product.product_image1})`}}>
 
         </div>

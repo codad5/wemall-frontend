@@ -208,7 +208,7 @@ function View() {
                                             }}>
                                               <div className="product_show-order-quantity-wrapper">
                                                   <button className="increase-quantity minus" type="button" onClick={() => { if (orderQuantity > 0) {setQuantity(orderQuantity - 1)}}}>-</button>
-                                                  <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => {setQuantity(e.target.value)}}/>
+                                                  <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => { if (orderQuantity < product.data.data.product_quantity) {setQuantity(e.target.value)}}}/>
                                                   <button className="increase-quantity plus" type="button" onClick={() => { if (orderQuantity < product.data.data.product_quantity ){setQuantity(orderQuantity + 1)}}}>+</button>
 
                                               </div>
@@ -258,7 +258,7 @@ function View() {
                         </div>)}
             </section>
             
-              <ProductShow heading="you may also like"></ProductShow>
+              <ProductShow heading="you may also like" productId={product ? product.data.data.product_id : null}></ProductShow>
           </main>
           <Footer></Footer>
     </div>
