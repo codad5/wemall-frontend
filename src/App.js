@@ -16,18 +16,18 @@ function App(props) {
 
   return (
     <div className="App">
-      <Header color='var(--main-white)' colorImportant="true"></Header>
+      <Header color='var(--main-white)' colorImportant="true" />
       <main>
-        <Hero bannerImage={baseUrl+"../assets/image/gallery/622513e152fd34.82554223.png"}></Hero>
-        <Featured fImages={fImages} ></Featured>
+        <Hero bannerImage={baseUrl+"../assets/image/gallery/622513e152fd34.82554223.png"} />
+        <Featured fImages={fImages} />
         <section className="whyus">
             wh
         </section>
-        <ProductShow value="100" param="category/all"></ProductShow> 
-        <ProductShow value="100" heading="If you are a female"></ProductShow> 
+        <ProductShow value="100" param="category/all" />
+        <ProductShow value="100" heading="If you are a female" />
       </main>
       
-      <Footer></Footer>
+      <Footer />
 
     </div>
   );
