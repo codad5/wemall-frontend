@@ -61,11 +61,11 @@ function Checkout(props){
             let newloginState = localStorage.getItem('loggedUser') || false
         // console.log(currentPath, newloginState);
             if (newloginState === false && currentPath != "/login") {
-                SetLogin(false)
+                SetLogin(old => false)
                 navigate("/login");
             }
             else if(newloginState != false) {
-                SetLogin(newloginState)
+                SetLogin(oldloginState => newloginState)
                 navigate("/checkout");
 
             }
@@ -96,7 +96,7 @@ function Checkout(props){
             return v.data.product_id !== id;
         });
 
-        setCartItemArray(newCart)
+        setCartItemArray(oldcart => newCart)
     }
 
     useEffect(() => {
@@ -104,7 +104,7 @@ function Checkout(props){
         
 
         
-        setTotal(sumItemArray(cartItemArray))
+        setTotal(old => sumItemArray(cartItemArray))
 
     }, [cartItemArray])
     useEffect(() => {
@@ -112,7 +112,7 @@ function Checkout(props){
         
 
         getStorage().forEach(item => setCartItem(item));
-        setTotal(sumItemArray(cartItemArray))
+        setTotal(old => sumItemArray(cartItemArray))
 
     }, [deleted])
     const onSuccess = (reference) => {
@@ -205,7 +205,7 @@ function Checkout(props){
 
                                         semi.reference = OrderData.data.payment_id.reference
                                         semi.amount = totalPrice * 100
-                                        setConfig(semi)
+                                        setConfig(old => semi)
                                         console.log(config, "hello")
                                         initializePayment(onSuccess, onClose)
 

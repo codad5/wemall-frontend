@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSearchParams, useLocation, useNavigate, Link, createSearchParams } from 'react-router-dom'
+import {CurrencyNet} from 'currencynet'
 import axios from 'axios';
 import {BaseUrl} from './components/BaseUrl';
 
@@ -22,7 +23,7 @@ function ProductShow(props) {
     .then((response) => {
       // console.log(response)
       console.log(props.productId)
-      setProducts(response.data.data)
+      setProducts(old => response.data.data)
     })
     .catch((e) => console.log(e))
 
@@ -57,16 +58,19 @@ function ProductShow(props) {
     if (product.product_discount > 0) {
 
     let text = "";
+    let finalValue = 0;
     switch (product.discount_method) {
       case 'percentage':
-        text = `${product.product_price - ((product.product_discount / 100) * product.product_price).toFixed(2) }`;
+        finalValue = product.product_price - ((product.product_discount / 100) * product.product_price).toFixed(2) ;
+        text = `${finalValue}`;
+        // text = `${product.product_price - ((product.product_discount / 100) * product.product_price).toFixed(2) }`;
         // text = text.toFixed(2)
         break;
       case 'price_cut':
-        let price = 0;
-        price = (product.product_price - product.product_discount);
+        
+        finalValue = (product.product_price - product.product_discount);
 
-        text = `${price}`;
+        text = `${finalValue}`;
         break;
 
       default:
@@ -74,7 +78,9 @@ function ProductShow(props) {
         break;
     }
     return (
-      <span className="product-discount-price">${text}</span>
+      <span className="product-discount-price">
+        <CurrencyNet buildCurrency="USD" value={finalValue} />
+      </span>
     )
     }
 

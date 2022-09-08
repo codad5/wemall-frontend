@@ -36,15 +36,15 @@ export function Signup(){
             }}>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" placeholder="Enter name" onChange={(e) => {
-                    SetName(e.target.value)
+                    SetName(old => e.target.value)
                     // console.log(signUpdata)
                 }}/>
                 <label htmlFor="number">Number</label>
-                <input type="tel" id="number" placeholder="Enter number" onChange={(e) => SetTel(e.target.value)}/>
+                <input type="tel" id="number" placeholder="Enter number" onChange={(e) => SetTel(old => e.target.value)}/>
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="Enter Email" onChange={(e) => SetEmail(e.target.value)}/>
+                <input type="email" id="email" placeholder="Enter Email" onChange={(e) => SetEmail(old => e.target.value)}/>
                 <label htmlFor="loginpassword">Password</label>
-                <input type="password" id="loginpassword" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
+                <input type="password" id="loginpassword" placeholder="Enter password" onChange={(e) => SetPassword(old => e.target.value)}/>
                 <button type="submit">SIGNUP</button>
             </form>
         </section>
@@ -79,9 +79,9 @@ export function Login(){
 
             }}>
                 <label htmlFor="username">Email/Phone</label>
-                <input type="email" id="username" placeholder="Enter Email" onChange={(e) => SetName(e.target.value)}/>
+                <input type="email" id="username" placeholder="Enter Email" onChange={(e) => SetName(old => e.target.value)}/>
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(e.target.value)}/>
+                <input type="password" id="password" placeholder="Enter password" onChange={(e) => SetPassword(old => e.target.value)}/>
                 <button type="submit">LOGIN</button>
             </form>
         </section>

@@ -43,7 +43,7 @@ export default function Cartnav(props){
             return v.data.product_id !== id;
         });
 
-        setCartItemArray(newCart)
+        setCartItemArray(oldcart => newCart)
     }
     
     
@@ -63,7 +63,7 @@ export default function Cartnav(props){
     return (
         <div>
             <div className="header-cart_icon" onClick={() => {
-                setCartopened(!cartopened)
+                setCartopened(cartopened => !cartopened)
                 }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
                         <g id="noun_cart_2102832_4_" data-name="noun_cart_2102832 (4)" transform="translate(-6 -6)">
@@ -78,7 +78,7 @@ export default function Cartnav(props){
             
             <div className="cart-header">
                 Cart
-                <div className="cartClose" onClick={() => setCartopened(!cartopened)}>
+                <div className="cartClose" onClick={() => setCartopened(cartopened => !cartopened)}>
                     {/* <AccessAlarm> Hi </AccessAlarm>  */}
 
                     close

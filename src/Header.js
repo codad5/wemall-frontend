@@ -18,26 +18,26 @@ export default function Header(props){
     
     useEffect(() => {
         if (scrollHeight >= 518 || props.background != null) {
-            setHeaderStyle({ background: 'var(--main-black)', top: 0, transition: 'all 0s', color: 'var(--main-white)' });
-            setLinkStyle({ color: 'var(--main-white)', fill:'var(--main-white)' });
+            setHeaderStyle(old => { return { background: 'var(--main-black)', top: 0, transition: 'all 0s', color: 'var(--main-white)' }});
+            setLinkStyle(old => { return { color: 'var(--main-white)', fill:'var(--main-white)' }});
         }else{
-            setLinkStyle({ color: 'var(--main-black)', fill:'var(--main-black)' });
-            setHeaderStyle({ background: 'transparent', top: '20px' });
+            setLinkStyle(old =>{ return { color: 'var(--main-black)', fill:'var(--main-black)' }});
+            setHeaderStyle(old => { return { background: 'transparent', top: '20px' }});
             
         }
         if (scrollHeight < 518 && props.colorImportant == 'true'){
-            setLinkStyle({ color: 'var(--main-white)', fill:'var(--main-white)' });
+            setLinkStyle(old => { return { color: 'var(--main-white)', fill:'var(--main-white)' }});
 
         }
     }, [scrollHeight])
 
     useEffect(() => {
-        setOrderedItem(getStorage())
+        setOrderedItem(old => getStorage())
 
-    }, [props?.key])
+    }, [props?.resetKey])
     
     window.addEventListener('scroll', () => {
-        setScrollHeight(window.scrollY);
+        setScrollHeight(old => window.scrollY);
         // console.log(window.scrollY);
         
         

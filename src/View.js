@@ -32,7 +32,7 @@ function View() {
         if (product.product_discount > 0) {
 
             let sign = "%", text = "";
-
+            
             switch (product.discount_method) {
                 case 'percentage':
                     text = `- ${product.product_discount.toFixed(2) - 0.01}%`;
@@ -86,14 +86,14 @@ function View() {
         // console.log(data.data)
         if(!data.data.error){
             
-            setMainImage(data.data.data.product_image1);
+            setMainImage(old => data.data.data.product_image1);
             
         }
         // console.log(data);
-        setOrderProduct(getStorage() ?? [])
-        setProduct(data)
-        setProductId(id)  
-        setQuantity(setOrderQuantity(id))      
+        setOrderProduct(old => getStorage() ?? [])
+        setProduct(old => data)
+        setProductId(old => id)  
+        setQuantity(old => setOrderQuantity(id))      
         
         
         
@@ -117,7 +117,7 @@ function View() {
             localStorage.setItem("orderedProduct", items);
             
             // console.log(orderedProduct)
-            setHeaderKey(Math.random())
+            setHeaderKey(old => Math.random())
             //   console.log(orderedProduct, localStorage.getItem("orderedProduct"));
         }
     }
@@ -129,7 +129,7 @@ function View() {
   return (
       
     <div>
-          <Header color='var(--main-black)' orderNumber="" key={headerKey}></Header>
+          <Header color='var(--main-black)' orderNumber="" resetKey={headerKey}></Header>
           <main style={{paddingTop: '70px'}}>
             <section className="product_show-hero">
             {/* to check if the api fetch was ok */}
@@ -146,7 +146,7 @@ function View() {
                                 <div className="product_show-layout-header">
                                     <div className="product_show-categorybox">
                                           <div  className="product_show-Categoryblock ">  {product.data.data.product_gender} ></div>
-                                          {product.data.data.product_category.map((cat, i) => {
+                                          {product.data.data.product_category?.map((cat, i) => {
                                               
                                               if(i < 4 && cat.trim().length > 0){ 
                                                   return (
@@ -163,23 +163,23 @@ function View() {
                                     </div>
                                 </div>
                                 <div className="product_show-layout_all_image">
-                                      <img src={product.data.data.product_image1} alt={product.data.data.product_category.join(',')}  onClick={(e) => {
+                                      <img src={product.data.data.product_image1} alt={product.data.data.product_category?.join(',')}  onClick={(e) => {
                                           setMainImage(e.target.src)
                                       }}/>
-                                      <img src={product.data.data.product_image2} alt={product.data.data.product_category.join(',')}  onClick={(e) => {
+                                      <img src={product.data.data.product_image2} alt={product.data.data.product_category?.join(',')}  onClick={(e) => {
                                           setMainImage(e.target.src)
                                       }}/>
-                                      <img src={product.data.data.product_image3} alt={product.data.data.product_category.join(',')}  onClick={(e) => {
+                                      <img src={product.data.data.product_image3} alt={product.data.data.product_category?.join(',')}  onClick={(e) => {
                                           setMainImage(e.target.src)
                                       }}/>
-                                      <img src={product.data.data.product_image4} alt={product.data.data.product_category.join(',')}  onClick={(e) => {
+                                      <img src={product.data.data.product_image4} alt={product.data.data.product_category?.join(',')}  onClick={(e) => {
                                           setMainImage(e.target.src)
                                       }}/>
-                                      <img src={product.data.data.product_image1} alt={product.data.data.product_category.join(',')}  onClick={(e) => {
+                                      <img src={product.data.data.product_image1} alt={product.data.data.product_category?.join(',')}  onClick={(e) => {
                                           setMainImage(e.target.src)
                                       }}/>
                                 </div>
-                                  <div className="product_show-main-pic"><img className="image" src={mainImage} alt={product.data.data.product_category.join(',')}/></div>
+                                  <div className="product_show-main-pic"><img className="image" src={mainImage} alt={product.data.data.product_category?.join(',')}/></div>
                                   <div className="product_show-description-cnt">
                                       <div className="product_show-description-header">
                                           {
@@ -207,9 +207,9 @@ function View() {
                                               
                                             }}>
                                               <div className="product_show-order-quantity-wrapper">
-                                                  <button className="increase-quantity minus" type="button" onClick={() => { if (orderQuantity > 0) {setQuantity(orderQuantity - 1)}}}>-</button>
-                                                  <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => { if (orderQuantity < product.data.data.product_quantity) {setQuantity(e.target.value)}}}/>
-                                                  <button className="increase-quantity plus" type="button" onClick={() => { if (orderQuantity < product.data.data.product_quantity ){setQuantity(orderQuantity + 1)}}}>+</button>
+                                                  <button className="increase-quantity minus" type="button" onClick={() => { if (orderQuantity > 0) {setQuantity(old => orderQuantity - 1)}}}>-</button>
+                                                  <input value={orderQuantity} min="0" max={orderQuantity} type="number" onChange={(e) => { if (orderQuantity < product.data.data.product_quantity) {setQuantity(old => e.target.value)}}}/>
+                                                  <button className="increase-quantity plus" type="button" onClick={() => { if (orderQuantity < product.data.data.product_quantity ){setQuantity(old => orderQuantity + 1)}}}>+</button>
 
                                               </div>
                                               <button type="submit"> ADD TO CART</button>

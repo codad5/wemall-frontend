@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { usePaystackPayment } from "react-paystack"
+import { CurrencyNet } from 'currencynet'
 
 
 export const paystack_key = "pk_test_5a0c5ef637b30a2f39eb18ad3ba33974401928df";
@@ -40,7 +41,9 @@ export const setDiscount = (product, int_r = false) => {
             return price.toFixed(2);
         }
         return (
-            <span>${text}</span>
+            <span>
+                <CurrencyNet buildCurrency="USD" value={price} />
+            </span>
         )
     }
 
