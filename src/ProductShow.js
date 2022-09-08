@@ -112,7 +112,7 @@ function ProductShow(props) {
               
           }> {product.product_name}</Link> </div>
           <div className="product-price"> {setDiscount(product)}
-            ${product.product_price} </div>
+            <CurrencyNet buildCurrency="USD" value={product.product_price} /> </div>
         </div>
         {setDiscountPer(product) }
       </div>)}
