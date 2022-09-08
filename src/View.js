@@ -1,6 +1,7 @@
 import React, {useState, useEffect}from 'react'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { useParams } from "react-router";
+import {CurrencyNet} from 'currencynet' 
 import Header from './Header'
 import axios from 'axios';
 import Footer from './Footer'
@@ -195,7 +196,8 @@ function View() {
                                               <span className="product_show-cut-price">
                                                   {(product.data.data.product_discount > 0) ? setDiscount(product.data.data) : ''}
                                               </span>
-                                              <span className="product_show-main-price">${product.data.data.product_price}</span>
+                                              <span className="product_show-main-price">
+                                                <CurrencyNet buildCurrency="USD" value={product.data.data.product_price} /></span>
                                           </div>
                                           <div className="product_show-product_size">
                                               <label htmlFor="priceTag">SIZE</label><span id="priceTag" className=" show-size">: {product.data.data.product_size}</span>
